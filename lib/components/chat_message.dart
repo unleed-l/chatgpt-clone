@@ -1,6 +1,6 @@
 import 'package:chatgpt_clone/components/gpt_icon.dart';
 import 'package:chatgpt_clone/models/message.dart';
-import 'package:chatgpt_clone/models/role_enum.dart';
+import 'package:chatgpt_clone/models/enums/role_enum.dart';
 import 'package:flutter/material.dart';
 
 class MessageCard extends StatelessWidget {
@@ -17,12 +17,6 @@ class MessageCard extends StatelessWidget {
 
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-      // margin: const EdgeInsets.only(
-      //   top: 15,
-      //   left: 8,
-      //   right: 8,
-      //   bottom: 20,
-      // ),
       child: Row(
         mainAxisAlignment:
             isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
@@ -87,19 +81,12 @@ class Bubble extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 5),
-              Theme(
-                data: ThemeData(
-                  textSelectionTheme: TextSelectionThemeData(
-                    selectionColor: Colors.green.shade400,
-                  ),
-                ),
-                child: SelectableText(
-                  message.content,
-                  textAlign: isUser ? TextAlign.right : TextAlign.left,
-                  style: TextStyle(
-                    color: isUser ? Colors.black : Colors.white,
-                    fontWeight: FontWeight.w500,
-                  ),
+              SelectableText(
+                message.content,
+                textAlign: isUser ? TextAlign.right : TextAlign.left,
+                style: TextStyle(
+                  color: isUser ? Colors.black : Colors.white,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ],

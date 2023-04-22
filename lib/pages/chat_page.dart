@@ -7,10 +7,10 @@ class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
 
   @override
-  State<ChatPage> createState() => _ChatPageState();
+  State<ChatPage> createState() => ChatPageState();
 }
 
-class _ChatPageState extends State<ChatPage> {
+class ChatPageState extends State<ChatPage> {
   final messageController = TextEditingController();
   bool _isLoading = false;
 
@@ -29,7 +29,9 @@ class _ChatPageState extends State<ChatPage> {
       body: SafeArea(
         child: Column(
           children: [
-            Expanded(child: Messages(isLoading: _isLoading)),
+            Expanded(
+              child: Messages(isLoading: _isLoading),
+            ),
             SendMessage(
               controller: messageController,
               isActive: !_isLoading,

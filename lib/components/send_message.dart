@@ -1,5 +1,5 @@
 import 'package:chatgpt_clone/models/message.dart';
-import 'package:chatgpt_clone/models/role_enum.dart';
+import 'package:chatgpt_clone/models/enums/role_enum.dart';
 import 'package:chatgpt_clone/providers/message_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';

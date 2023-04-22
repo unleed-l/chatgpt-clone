@@ -10,6 +10,9 @@ class GPTTheme {
         primary: const Color(0xFF393939),
         secondary: const Color.fromARGB(255, 194, 194, 194),
       ),
+      textSelectionTheme: TextSelectionThemeData(
+        selectionColor: Colors.green.shade400,
+      ),
       scaffoldBackgroundColor: const Color(0xFF393939),
     );
   }

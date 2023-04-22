@@ -1,4 +1,4 @@
-import 'package:chatgpt_clone/models/role_enum.dart';
+import 'package:chatgpt_clone/models/enums/role_enum.dart';
 import 'package:uuid/uuid.dart';
 
 class Message {
