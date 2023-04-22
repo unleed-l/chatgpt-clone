@@ -24,7 +24,7 @@ class SendMessage extends StatefulWidget {
 }
 
 class _SendMessageState extends State<SendMessage> {
-  Future<void> search(MessageProvider messageProvider) async {
+  Future<void> ask(MessageProvider messageProvider) async {
     if (widget.controller.text.isEmpty) return;
 
     final String message = widget.controller.text;
@@ -59,6 +59,7 @@ class _SendMessageState extends State<SendMessage> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
+      color: Theme.of(context).colorScheme.primary,
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       child: Padding(
         padding: const EdgeInsets.only(left: 8),
@@ -73,12 +74,13 @@ class _SendMessageState extends State<SendMessage> {
                 ? const Color.fromARGB(255, 80, 192, 148)
                 : null,
             suffixIcon: IconButton(
-              onPressed: () => search(messageProvider),
+              onPressed: () => ask(messageProvider),
               iconSize: 18,
               icon: const FaIcon(FontAwesomeIcons.solidPaperPlane),
             ),
           ),
           onTapOutside: (event) => FocusScope.of(context).unfocus(),
+          onEditingComplete: () => ask(messageProvider),
         ),
       ),
     );

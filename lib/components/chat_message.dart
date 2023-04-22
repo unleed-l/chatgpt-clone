@@ -48,8 +48,9 @@ class Bubble extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            color:
-                isUser ? Colors.grey.shade100 : Theme.of(context).primaryColor,
+            color: isUser
+                ? const Color.fromARGB(255, 80, 192, 148)
+                : Theme.of(context).primaryColor,
             borderRadius: BorderRadius.only(
               topLeft: const Radius.circular(12),
               topRight: const Radius.circular(12),
@@ -75,7 +76,7 @@ class Bubble extends StatelessWidget {
                 isUser ? 'Você' : 'ChatGPT',
                 style: TextStyle(
                   color: isUser
-                      ? Colors.black
+                      ? Colors.grey.shade900
                       : const Color.fromARGB(255, 80, 192, 148),
                   fontWeight: FontWeight.w900,
                 ),
