@@ -1,3 +1,4 @@
+import 'package:chatgpt_clone/components/gpt_icon.dart';
 import 'package:chatgpt_clone/providers/message_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,17 +28,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           // fontSize: 18,
           color: Color.fromARGB(255, 80, 192, 148),
           fontWeight: FontWeight.bold,
-          // shadows: [
-          //   Shadow(
-          //     color: Colors.grey.shade900,
-          //     offset: const Offset(2, 2),
-          //   ),
-          // ],
         ),
       ),
-      leading: Padding(
-        padding: const EdgeInsets.all(10),
-        child: FittedBox(child: Image.asset('assets/images/light_logo.png')),
+      leading: const Padding(
+        padding: EdgeInsets.all(12),
+        child: GPTIcon(),
       ),
       actions: [
         IconButton(

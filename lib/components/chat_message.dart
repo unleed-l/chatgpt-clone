@@ -114,7 +114,7 @@ class GPTLogo extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: const [
-            GPTIcon(),
+            GPTIcon(size: 30),
             SizedBox(width: 5),
           ],
         ),
