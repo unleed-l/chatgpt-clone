@@ -1,5 +1,5 @@
-import 'package:chatgpt_clone/components/chat_message.dart';
-import 'package:chatgpt_clone/components/empty_messages.dart';
+import 'package:chatgpt_clone/components/chat/chat_message.dart';
+import 'package:chatgpt_clone/components/chat/empty_messages.dart';
 import 'package:chatgpt_clone/models/message.dart';
 import 'package:chatgpt_clone/providers/message_provider.dart';
 import 'package:flutter/material.dart';

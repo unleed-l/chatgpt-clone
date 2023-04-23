@@ -1,6 +1,6 @@
-import 'package:chatgpt_clone/components/custom_appbar.dart';
-import 'package:chatgpt_clone/components/messages.dart';
-import 'package:chatgpt_clone/components/send_message.dart';
+import 'package:chatgpt_clone/components/appbar/custom_appbar.dart';
+import 'package:chatgpt_clone/components/chat/messages.dart';
+import 'package:chatgpt_clone/components/bottom_field/send_message.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 

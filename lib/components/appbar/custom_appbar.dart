@@ -1,4 +1,4 @@
-import 'package:chatgpt_clone/components/gpt_icon.dart';
+import 'package:chatgpt_clone/components/icons/gpt_icon.dart';
 import 'package:chatgpt_clone/providers/message_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

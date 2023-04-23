@@ -1,34 +1,5 @@
-import 'package:chatgpt_clone/components/gpt_icon.dart';
 import 'package:chatgpt_clone/models/message.dart';
-import 'package:chatgpt_clone/models/enums/role_enum.dart';
 import 'package:flutter/material.dart';
-
-class MessageCard extends StatelessWidget {
-  const MessageCard({
-    super.key,
-    required this.message,
-  });
-
-  final Message message;
-
-  @override
-  Widget build(BuildContext context) {
-    final bool isUser = message.role == Role.user;
-
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-      child: Row(
-        mainAxisAlignment:
-            isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          GPTLogo(visible: !isUser),
-          Bubble(isUser: isUser, message: message),
-        ],
-      ),
-    );
-  }
-}
 
 class Bubble extends StatelessWidget {
   const Bubble({
@@ -94,31 +65,6 @@ class Bubble extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class GPTLogo extends StatelessWidget {
-  const GPTLogo({
-    super.key,
-    required this.visible,
-  });
-
-  final bool visible;
-
-  @override
-  Widget build(BuildContext context) {
-    return Visibility(
-      visible: visible,
-      child: Flexible(
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: const [
-            GPTIcon(size: 30),
-            SizedBox(width: 5),
-          ],
-        ),
-      ),
     );
   }
 }

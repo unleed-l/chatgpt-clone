@@ -84,7 +84,6 @@ class _SendMessageState extends State<SendMessage> {
               ),
             ),
             onTapOutside: (event) => FocusScope.of(context).unfocus(),
-            onEditingComplete: () => ask(messageProvider),
           ),
         ),
       ),
