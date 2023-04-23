@@ -54,6 +54,7 @@ class _SendMessageState extends State<SendMessage> {
   @override
   Widget build(BuildContext context) {
     final messageProvider = Provider.of<MessageProvider>(context);
+    final screenHeight = MediaQuery.of(context).size.height;
 
     return Card(
       shape: RoundedRectangleBorder(
@@ -63,24 +64,28 @@ class _SendMessageState extends State<SendMessage> {
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       child: Padding(
         padding: const EdgeInsets.only(left: 8),
-        child: TextFormField(
-          controller: widget.controller,
-          enabled: widget.isActive,
-          cursorColor: const Color.fromARGB(255, 80, 192, 148),
-          decoration: InputDecoration(
-            hintText: 'Enviar mensagem...',
-            border: InputBorder.none,
-            suffixIconColor: widget.isActive
-                ? const Color.fromARGB(255, 80, 192, 148)
-                : null,
-            suffixIcon: IconButton(
-              onPressed: () => ask(messageProvider),
-              iconSize: 18,
-              icon: const FaIcon(FontAwesomeIcons.solidPaperPlane),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxHeight: screenHeight * .15),
+          child: TextFormField(
+            controller: widget.controller,
+            enabled: widget.isActive,
+            maxLines: null,
+            cursorColor: const Color.fromARGB(255, 80, 192, 148),
+            decoration: InputDecoration(
+              hintText: 'Enviar mensagem...',
+              border: InputBorder.none,
+              suffixIconColor: widget.isActive
+                  ? const Color.fromARGB(255, 80, 192, 148)
+                  : null,
+              suffixIcon: IconButton(
+                onPressed: () => ask(messageProvider),
+                iconSize: 18,
+                icon: const FaIcon(FontAwesomeIcons.solidPaperPlane),
+              ),
             ),
+            onTapOutside: (event) => FocusScope.of(context).unfocus(),
+            onEditingComplete: () => ask(messageProvider),
           ),
-          onTapOutside: (event) => FocusScope.of(context).unfocus(),
-          onEditingComplete: () => ask(messageProvider),
         ),
       ),
     );

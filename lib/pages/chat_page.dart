@@ -2,6 +2,7 @@ import 'package:chatgpt_clone/components/custom_appbar.dart';
 import 'package:chatgpt_clone/components/messages.dart';
 import 'package:chatgpt_clone/components/send_message.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
@@ -24,13 +25,22 @@ class ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
+    final isKeyboardVisible =
+        KeyboardVisibilityProvider.isKeyboardVisible(context);
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+    final hideChat = isKeyboardVisible && isLandscape;
+
     return Scaffold(
-      appBar: const CustomAppBar(),
+      appBar: hideChat ? null : const CustomAppBar(),
       body: SafeArea(
         child: Column(
           children: [
-            Expanded(
-              child: Messages(isLoading: _isLoading),
+            Visibility(
+              visible: !hideChat,
+              child: Expanded(
+                child: Messages(isLoading: _isLoading),
+              ),
             ),
             SendMessage(
               controller: messageController,
