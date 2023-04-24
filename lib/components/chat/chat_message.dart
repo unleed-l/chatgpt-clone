@@ -21,7 +21,7 @@ class MessageCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment:
             isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           GPTLogo(visible: !isUser),
           Bubble(isUser: isUser, message: message),

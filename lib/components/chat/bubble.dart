@@ -2,11 +2,7 @@ import 'package:chatgpt_clone/models/message.dart';
 import 'package:flutter/material.dart';
 
 class Bubble extends StatelessWidget {
-  const Bubble({
-    super.key,
-    required this.isUser,
-    required this.message,
-  });
+  const Bubble({super.key, required this.isUser, required this.message});
 
   final bool isUser;
   final Message message;
@@ -33,7 +29,6 @@ class Bubble extends StatelessWidget {
           ),
           constraints: BoxConstraints(
             maxWidth: MediaQuery.of(context).size.width * .7,
-            minWidth: MediaQuery.of(context).size.width * .2,
           ),
           padding: const EdgeInsets.symmetric(
             vertical: 10,
@@ -43,19 +38,29 @@ class Bubble extends StatelessWidget {
             crossAxisAlignment:
                 isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
             children: [
-              Text(
-                isUser ? 'Você' : 'ChatGPT',
-                style: TextStyle(
-                  color: isUser
-                      ? Colors.grey.shade900
-                      : const Color.fromARGB(255, 80, 192, 148),
-                  fontWeight: FontWeight.w900,
+              Visibility(
+                visible: !isUser,
+                child: Column(
+                  children: const [
+                    Text(
+                      // isUser ? 'Você' :
+                      'ChatGPT',
+                      style: TextStyle(
+                        color:
+                            // isUser
+                            //     ? Colors.black
+                            //     :
+                            Color.fromARGB(255, 80, 192, 148),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                  ],
                 ),
               ),
-              const SizedBox(height: 5),
               SelectableText(
                 message.content,
-                textAlign: isUser ? TextAlign.right : TextAlign.left,
+                textAlign: TextAlign.left,
                 style: TextStyle(
                   color: isUser ? Colors.black : Colors.white,
                   fontWeight: FontWeight.w500,
