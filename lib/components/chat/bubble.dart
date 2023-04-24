@@ -43,14 +43,9 @@ class Bubble extends StatelessWidget {
                 child: Column(
                   children: const [
                     Text(
-                      // isUser ? 'Você' :
                       'ChatGPT',
                       style: TextStyle(
-                        color:
-                            // isUser
-                            //     ? Colors.black
-                            //     :
-                            Color.fromARGB(255, 80, 192, 148),
+                        color: Color.fromARGB(255, 80, 192, 148),
                         fontWeight: FontWeight.bold,
                       ),
                     ),
