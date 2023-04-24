@@ -32,15 +32,18 @@ class MessageProvider extends ChangeNotifier {
       for (Message msg in _messages) msg.messageToMap()
     ];
 
-    final response = await http.post(
-      Uri.parse(configs.link),
-      headers: configs.headers,
-      body: jsonEncode({
-        'model': configs.model,
-        'messages': messagesMap,
-        'temperature': 0.5,
-      }),
-    );
+    final response = await http
+        .post(
+          Uri.parse(configs.link),
+          headers: configs.headers,
+          body: jsonEncode({
+            'model': configs.model,
+            'messages': messagesMap,
+            'temperature': 0.5,
+          }),
+        )
+        .onError((error, stackTrace) =>
+            throw 'Não foi possível conectar. Verifique sua conexão de rede.');
 
     if (response.statusCode == 200) {
       final dadosBody = jsonDecode(utf8.decode(response.bodyBytes));
@@ -50,7 +53,7 @@ class MessageProvider extends ChangeNotifier {
         throw 'Ocorreu um erro com a sua solicitação. ${response.statusCode}';
       }
 
-      addMessage(Message.fromMap(message));
+      addMessage(Message.fromGPTMap(message));
     } else {
       throw 'Ocorreu um erro com a sua solicitação. ${response.statusCode}';
     }

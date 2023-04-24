@@ -6,29 +6,18 @@ class Message {
   final Role role;
   final String content;
 
-  const Message({
+  Message({
+    required String content,
     required this.uuid,
     required this.role,
-    required this.content,
-  });
+  }) : content = content.trim();
 
-  Map<String, dynamic> messageToMap() => {
-        'role': role.type,
-        'content': content,
-      };
+  Map<String, dynamic> messageToMap() =>
+      {'role': role.type, 'content': content};
 
-  static Role _stringToRole(String role) {
-    switch (role) {
-      case 'assistant':
-        return Role.assistant;
-      default:
-        return Role.system;
-    }
-  }
-
-  factory Message.fromMap(Map<String, dynamic> message) => Message(
+  factory Message.fromGPTMap(Map<String, dynamic> message) => Message(
         uuid: const Uuid().v4(),
-        role: _stringToRole(message['role'] ?? ''),
+        role: Role.assistant,
         content: message['content'] ?? '',
       );
 }
