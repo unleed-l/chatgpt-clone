@@ -11,7 +11,6 @@ class Bubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isGPT = message.role == Role.assistant;
-    final isSystem = message.role == Role.system;
 
     return Container(
       decoration: BoxDecoration(
@@ -19,12 +18,9 @@ class Bubble extends StatelessWidget {
         borderRadius: BubbleFuncs.bubbleBorder(message.role),
       ),
       constraints: BoxConstraints(
-        maxWidth: MediaQuery.of(context).size.width * (isSystem ? .6 : .7),
+        maxWidth: MediaQuery.of(context).size.width * .7,
       ),
-      padding: EdgeInsets.symmetric(
-        vertical: isSystem ? 5 : 10,
-        horizontal: isSystem ? 10 : 15,
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -45,8 +41,7 @@ class Bubble extends StatelessWidget {
           ),
           SelectableText(
             message.content,
-            textAlign: isSystem ? TextAlign.center : TextAlign.left,
-            maxLines: isSystem ? 2 : null,
+            textAlign: TextAlign.left,
             style: TextStyle(
               color: BubbleFuncs.textColor(message.role),
               fontWeight: FontWeight.w500,

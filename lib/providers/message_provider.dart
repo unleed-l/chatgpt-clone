@@ -9,7 +9,7 @@ class MessageProvider extends ChangeNotifier {
   // ignore: prefer_final_fields
   List<Message> _messages = [];
 
-  List<Message> get messages => [..._messages.reversed];
+  List<Message> get messages => [..._messages.reversed.toList()];
 
   void addMessage(Message message) {
     _messages.add(message);
@@ -42,8 +42,7 @@ class MessageProvider extends ChangeNotifier {
             'temperature': 0.5,
           }),
         )
-        .onError((error, stackTrace) =>
-            throw 'Não foi possível conectar. Verifique sua conexão de rede.');
+        .onError((error, stackTrace) => throw 'Não foi possível conectar');
 
     if (response.statusCode == 200) {
       final dadosBody = jsonDecode(utf8.decode(response.bodyBytes));
