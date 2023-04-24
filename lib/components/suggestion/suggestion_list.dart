@@ -19,11 +19,8 @@ class SuggestionList extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemCount: suggestions.length,
         itemBuilder: (context, index) => Container(
-          constraints: const BoxConstraints(minHeight: 50),
-          margin: const EdgeInsets.symmetric(
-            vertical: 5,
-            horizontal: 15,
-          ),
+          constraints: const BoxConstraints(minHeight: 60),
+          margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
           child: ElevatedButton(
             onPressed: isExample
                 ? () => context
@@ -50,8 +47,9 @@ class SuggestionList extends StatelessWidget {
                       fontWeight: FontWeight.normal,
                     ),
                   ),
-                  if (isExample)
-                    WidgetSpan(
+                  WidgetSpan(
+                    child: Visibility(
+                      visible: isExample,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 5),
                         child: Icon(
@@ -61,6 +59,7 @@ class SuggestionList extends StatelessWidget {
                         ),
                       ),
                     ),
+                  ),
                 ],
               ),
             ),

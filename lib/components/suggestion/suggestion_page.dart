@@ -12,15 +12,9 @@ class SuggestionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, cnts) => SizedBox(
-        height: cnts.maxHeight,
-        width: cnts.maxWidth * .9,
-        child: Center(
-          child: SingleChildScrollView(
-            child: SuggestionWidget(suggestions: suggestions),
-          ),
-        ),
+    return Center(
+      child: SingleChildScrollView(
+        child: SuggestionWidget(suggestions: suggestions),
       ),
     );
   }

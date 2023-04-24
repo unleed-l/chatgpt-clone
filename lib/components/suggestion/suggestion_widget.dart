@@ -13,11 +13,16 @@ class SuggestionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SuggestionTitle(suggestionType: suggestions.first.type),
-        SuggestionList(suggestions: suggestions),
-      ],
+    final width = MediaQuery.of(context).size.width;
+
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: width * .025),
+      child: Column(
+        children: [
+          SuggestionTitle(suggestionType: suggestions.first.type),
+          SuggestionList(suggestions: suggestions),
+        ],
+      ),
     );
   }
 }
