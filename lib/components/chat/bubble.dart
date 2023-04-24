@@ -19,11 +19,11 @@ class Bubble extends StatelessWidget {
         borderRadius: BubbleFuncs.bubbleBorder(message.role),
       ),
       constraints: BoxConstraints(
-        maxWidth: MediaQuery.of(context).size.width * .7,
+        maxWidth: MediaQuery.of(context).size.width * (isSystem ? .6 : .7),
       ),
-      padding: const EdgeInsets.symmetric(
-        vertical: 10,
-        horizontal: 15,
+      padding: EdgeInsets.symmetric(
+        vertical: isSystem ? 5 : 10,
+        horizontal: isSystem ? 10 : 15,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,9 +46,11 @@ class Bubble extends StatelessWidget {
           SelectableText(
             message.content,
             textAlign: isSystem ? TextAlign.center : TextAlign.left,
+            maxLines: isSystem ? 2 : null,
             style: TextStyle(
               color: BubbleFuncs.textColor(message.role),
               fontWeight: FontWeight.w500,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],

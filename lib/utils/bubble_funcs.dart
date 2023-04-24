@@ -9,7 +9,7 @@ class BubbleFuncs {
       case Role.assistant:
         return Theme.of(context).primaryColor;
       case Role.system:
-        return Theme.of(context).colorScheme.error;
+        return Colors.transparent; //Theme.of(context).colorScheme.error;
     }
   }
 
@@ -17,8 +17,10 @@ class BubbleFuncs {
     switch (role) {
       case Role.user:
         return Colors.black;
-      default:
+      case Role.assistant:
         return Colors.white;
+      case Role.system:
+        return Colors.redAccent;
     }
   }
 
