@@ -93,6 +93,15 @@ class _MessageRowState extends State<MessageRow>
                     : Bubble(message: widget.message),
               ],
             ),
-          );
+          )
+            .animate(
+              autoPlay: false,
+              controller: _animationController,
+            )
+            .moveY(
+              begin: 50,
+              duration: 500.ms,
+              curve: Curves.easeInOut,
+            );
   }
 }
