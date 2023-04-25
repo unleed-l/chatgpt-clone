@@ -5,6 +5,7 @@ import 'package:chatgpt_clone/models/enums/role_enum.dart';
 import 'package:chatgpt_clone/models/message.dart';
 import 'package:chatgpt_clone/providers/message_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
@@ -16,25 +17,44 @@ class ChatPage extends StatefulWidget {
   State<ChatPage> createState() => ChatPageState();
 }
 
-class ChatPageState extends State<ChatPage> {
+class ChatPageState extends State<ChatPage> with TickerProviderStateMixin {
   final messageController = TextEditingController();
+  final _scrollController = ScrollController();
+  late AnimationController _animationController;
   bool _isLoading = false;
+
+  @override
+  void initState() {
+    _animationController = AnimationController(vsync: this, duration: 500.ms);
+    super.initState();
+  }
 
   @override
   void dispose() {
     messageController.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 
-  Future<void> onSubmitted() async {
+  setLoading(bool load) => setState(() => _isLoading = load);
+
+  Future<void> _onSubmitted() async {
     if (messageController.text.trim().isEmpty) return;
     final messageProvider =
         Provider.of<MessageProvider>(context, listen: false);
-
     final String msg = messageController.text;
+
+    if (messageProvider.messages.isNotEmpty) {
+      await _scrollController.animateTo(
+        _scrollController.position.minScrollExtent,
+        duration: 300.ms,
+        curve: Curves.easeOut,
+      );
+    }
+
     messageController.clear();
 
-    setState(() => _isLoading = true);
+    setLoading(true);
     try {
       await messageProvider.doAsk(
         Message(
@@ -52,7 +72,7 @@ class ChatPageState extends State<ChatPage> {
         ),
       );
     }
-    setState(() => _isLoading = false);
+    setLoading(false);
   }
 
   @override
@@ -63,6 +83,11 @@ class ChatPageState extends State<ChatPage> {
         MediaQuery.of(context).orientation == Orientation.landscape;
     final hideChat = isKeyboardVisible && isLandscape;
 
+    Provider.of<MessageProvider>(context).addListener(() {
+      _animationController.reset();
+      _animationController.forward();
+    });
+
     return Scaffold(
       appBar: hideChat ? null : const CustomAppBar(),
       body: SafeArea(
@@ -71,13 +96,17 @@ class ChatPageState extends State<ChatPage> {
             Visibility(
               visible: !hideChat,
               child: Expanded(
-                child: MessageList(isLoading: _isLoading),
+                child: MessageList(
+                  controller: _scrollController,
+                  isLoading: _isLoading,
+                  animationController: _animationController,
+                ),
               ),
             ),
             SendMessage(
               controller: messageController,
               isActive: !_isLoading,
-              onSubmitted: onSubmitted,
+              onSubmitted: _onSubmitted,
             ),
           ],
         ),

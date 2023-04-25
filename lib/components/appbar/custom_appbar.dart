@@ -1,4 +1,5 @@
 import 'package:chatgpt_clone/components/icons/gpt_icon.dart';
+import 'package:chatgpt_clone/pages/chat_page.dart';
 import 'package:chatgpt_clone/providers/message_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -38,7 +39,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         IconButton(
           onPressed: messageProvider.messages.isEmpty
               ? null
-              : () => messageProvider.clearMessages(),
+              : () {
+                  messageProvider.clearMessages();
+                  context
+                      .findAncestorStateOfType<ChatPageState>()
+                      ?.setLoading(false);
+                },
           icon: const Icon(Icons.add),
         ),
       ],

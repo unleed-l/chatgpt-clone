@@ -7,48 +7,28 @@ import 'package:chatgpt_clone/providers/message_provider.dart';
 import 'package:chatgpt_clone/utils/bubble_funcs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:provider/provider.dart';
 
 class MessageRow extends StatefulWidget {
   const MessageRow({
     super.key,
     required this.message,
     required this.animate,
+    required this.animationController,
   });
 
   final Message message;
   final bool animate;
+  final AnimationController animationController;
 
   @override
   State<MessageRow> createState() => _MessageRowState();
 }
 
-class _MessageRowState extends State<MessageRow>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-
-  @override
-  void initState() {
-    _animationController = AnimationController(vsync: this, duration: 500.ms);
-    _animationController.forward();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
-
+class _MessageRowState extends State<MessageRow> {
   @override
   Widget build(BuildContext context) {
     final bool isGPT = widget.message.role == Role.assistant;
     final isSystem = widget.message.role == Role.system;
-
-    Provider.of<MessageProvider>(context).addListener(() {
-      _animationController.reset();
-      _animationController.forward();
-    });
 
     return widget.animate
         ? Container(
@@ -68,7 +48,7 @@ class _MessageRowState extends State<MessageRow>
           )
             .animate(
               autoPlay: false,
-              controller: _animationController,
+              controller: widget.animationController,
             )
             .moveY(
               begin: 50,
@@ -77,7 +57,7 @@ class _MessageRowState extends State<MessageRow>
             )
             .fade(
               duration: 500.ms,
-              curve: Curves.easeInOut,
+              curve: Curves.easeIn,
             )
         : Container(
             margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
@@ -96,7 +76,7 @@ class _MessageRowState extends State<MessageRow>
           )
             .animate(
               autoPlay: false,
-              controller: _animationController,
+              controller: widget.animationController,
             )
             .moveY(
               begin: 50,
