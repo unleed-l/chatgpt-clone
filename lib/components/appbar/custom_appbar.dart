@@ -5,7 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({super.key});
+  const CustomAppBar({
+    super.key,
+    required this.isActive,
+  });
+
+  final bool isActive;
 
   @override
   Size get preferredSize => const Size.fromHeight(60);
@@ -37,7 +42,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: [
         IconButton(
-          onPressed: messageProvider.messages.isEmpty
+          onPressed: messageProvider.messages.isEmpty || !isActive
               ? null
               : () {
                   messageProvider.clearMessages();

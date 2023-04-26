@@ -1,12 +1,19 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:chatgpt_clone/models/enums/role_enum.dart';
 import 'package:chatgpt_clone/models/message.dart';
 import 'package:chatgpt_clone/utils/bubble_funcs.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Bubble extends StatelessWidget {
-  const Bubble({super.key, required this.message});
+  const Bubble({
+    super.key,
+    required this.message,
+    required this.animateText,
+  });
 
   final Message message;
+  final bool animateText;
 
   @override
   Widget build(BuildContext context) {
@@ -39,15 +46,34 @@ class Bubble extends StatelessWidget {
               ],
             ),
           ),
-          SelectableText(
-            message.content,
-            textAlign: TextAlign.left,
-            style: TextStyle(
-              color: BubbleFuncs.textColor(message.role),
-              fontWeight: FontWeight.w500,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
+          animateText
+              ? AnimatedTextKit(
+                  isRepeatingAnimation: false,
+                  animatedTexts: [
+                    TypewriterAnimatedText(
+                      message.content,
+                      textStyle: TextStyle(
+                        color: BubbleFuncs.textColor(message.role),
+                        fontWeight: FontWeight.w500,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                  onTap: () => Clipboard.setData(
+                    ClipboardData(
+                      text: message.content,
+                    ),
+                  ),
+                )
+              : SelectableText(
+                  message.content,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    color: BubbleFuncs.textColor(message.role),
+                    fontWeight: FontWeight.w500,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
         ],
       ),
     );

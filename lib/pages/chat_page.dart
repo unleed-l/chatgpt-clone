@@ -89,7 +89,7 @@ class ChatPageState extends State<ChatPage> with TickerProviderStateMixin {
     });
 
     return Scaffold(
-      appBar: hideChat ? null : const CustomAppBar(),
+      appBar: hideChat ? null : CustomAppBar(isActive: !_isLoading),
       body: SafeArea(
         child: Column(
           children: [

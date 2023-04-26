@@ -42,7 +42,10 @@ class _MessageRowState extends State<MessageRow> {
                 if (isGPT) const GPTLogo(),
                 isSystem
                     ? SystemBubble(message: widget.message)
-                    : Bubble(message: widget.message),
+                    : Bubble(
+                        message: widget.message,
+                        animateText: widget.animate && isGPT,
+                      ),
               ],
             ),
           )
@@ -70,7 +73,10 @@ class _MessageRowState extends State<MessageRow> {
                 if (isGPT) const GPTLogo(),
                 isSystem
                     ? SystemBubble(message: widget.message)
-                    : Bubble(message: widget.message),
+                    : Bubble(
+                        message: widget.message,
+                        animateText: widget.animate && isGPT,
+                      ),
               ],
             ),
           )
