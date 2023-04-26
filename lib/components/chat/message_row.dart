@@ -3,7 +3,6 @@ import 'package:chatgpt_clone/components/chat/gpt_logo.dart';
 import 'package:chatgpt_clone/components/chat/system_bubble.dart';
 import 'package:chatgpt_clone/models/message.dart';
 import 'package:chatgpt_clone/models/enums/role_enum.dart';
-import 'package:chatgpt_clone/providers/message_provider.dart';
 import 'package:chatgpt_clone/utils/bubble_funcs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
