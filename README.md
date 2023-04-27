@@ -1,11 +1,11 @@
-# chatgpt_clone
+## ChatGPT Clone
 
-## Introduction
+### Introduction
 
-That's a chatgpt clone app writen in Flutter/Dart
+That's a ChatGPT clone app writen in Flutter/Dart
 to study how OpenAI API works.
 
-## Setup
+### Setup
 
 1. To use the OpenAI API a key is needed, so you'll need to create your own key.
 You can do that on this [site](https://platform.openai.com/account/api-keys).
