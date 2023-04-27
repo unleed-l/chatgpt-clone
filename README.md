@@ -1,16 +1,12 @@
 # chatgpt_clone
 
-A new Flutter project.
+## Introduction
 
-## Getting Started
+That's a chatgpt clone app writen in Flutter/Dart
+to study how OpenAI API works.
 
-This project is a starting point for a Flutter application.
+## Setup
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. To use the OpenAI API a key is needed, so you'll need to create your own key.
+You can do that on this [site](https://platform.openai.com/account/api-keys).
+2. Create a .env file in the root of project and store your API key in a variable named "API_KEY".
