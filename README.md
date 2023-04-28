@@ -10,3 +10,5 @@ to study how OpenAI API works.
 1. To use the OpenAI API a key is needed, so you'll need to create your own key.
 You can do that on this [site](https://platform.openai.com/account/api-keys).
 2. Create a .env file in the root of project and store your API key in a variable named "API_KEY".
+3. Install Flutter (you can find it [here](https://docs.flutter.dev/get-started/install)).
+4. Run flutter build apk --release.
